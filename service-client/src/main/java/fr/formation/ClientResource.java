@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
+import fr.formation.clientRest.CommandeClientRest;
 import fr.formation.dto.request.ClientRequest;
 import fr.formation.dto.response.ClientResponse;
 import fr.formation.dto.response.ClientWithDetailsResponse;
