@@ -38,14 +38,14 @@ public class StockResource {
     @GET
     @Path("/dispo/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public StockResponseDispo isDisponible(@PathParam("id") Long id,@QueryParam("quantite") int quantite) {
+    public boolean isDisponible(@PathParam("id") Long id,@QueryParam("quantite") int quantite) {
 
-        StockResponseDispo response = new StockResponseDispo();
+        //StockResponseDispo response = new StockResponseDispo();
 
-        response.produitId = id;
-        response.quantiteDemandee = quantite;        
-        response.disponible= stockService.isDisponible(id, quantite);
+        //response.produitId = id;
+        //response.quantiteDemandee = quantite;        
+        //response.disponible= stockService.isDisponible(id, quantite);
 
-        return response;
+        return stockService.isDisponible(id, quantite);
     }
 }
