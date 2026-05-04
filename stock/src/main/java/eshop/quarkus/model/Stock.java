@@ -7,7 +7,30 @@ import jakarta.persistence.Id;
 public class Stock {
 
     @Id
-    public int produitId;
+    public Long produitId;
 
     public int quantite;
+
+     public Stock(Long produitId, int quantite) {
+        this.produitId = produitId;
+        this.quantite = quantite;
+    }
+
+     public Long getProduitId() {
+         return produitId;
+     }
+
+     public void setProduitId(Long produitId) {
+         this.produitId = produitId;
+     }
+
+     public int getQuantite() {
+         return quantite;
+     }
+
+     public void setQuantite(int quantite) {
+         this.quantite = quantite;
+     }
+
+    
 }
