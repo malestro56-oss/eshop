@@ -7,6 +7,7 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import fr.formation.clientRest.CommandeClientRest;
 import fr.formation.dto.request.ClientRequest;
+import fr.formation.dto.request.CreateOrUpdateClientRequest;
 import fr.formation.dto.response.ClientResponse;
 import fr.formation.dto.response.ClientWithDetailsResponse;
 import fr.formation.model.Client;
@@ -70,21 +71,22 @@ public class ClientResource {
 
 		return Response.status(Response.Status.CREATED)
 				.entity(client.getId())
-				.build()
-				;
+				.build();
 	}
 
 
 	@PUT
 	@Transactional
 	@Path("/{id}")
-	public Response update(@PathParam("id") String id, @Valid ClientRequest request) {
+	public Response update(@PathParam("id") String id, @Valid CreateOrUpdateClientRequest request) {
 
 
 		Client client = this.clientrepository.findByIdOptional(id).orElseThrow(NotFoundException::new);
 
 		client.setPrenom(request.getPrenom());
 		client.setNom(request.getNom());
+		client.setEmail(request.getEmail());
+		client.setDateNaissance(request.getDateNaissance());
 
 		this.clientrepository.persist(client);
 
