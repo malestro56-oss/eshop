@@ -1,15 +1,22 @@
-package main.model;
+package fr.formation.servicecommande.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.List;
 
 @Entity
+@Table(name = "commande")
 public class Commande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer clientId;
-    
+
     private List<Produit> produits;
 
     private double total;
@@ -40,11 +47,11 @@ public class Commande {
         this.clientId = clientId;
     }
 
-    public List<Produit> getproduits() {
+    public List<Produit> getProduits() {
         return produits;
     }
 
-    public void setproduits(List<Produit> produits) {
+    public void setProduits(List<Produit> produits) {
         this.produits = produits;
     }
 
@@ -55,6 +62,5 @@ public class Commande {
     public void setTotal(double total) {
         this.total = total;
     }
-    
-    
+
 }
