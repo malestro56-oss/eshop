@@ -56,7 +56,11 @@ public class ProduitController {
     @DELETE
     @Path("/{id}")
     public int deleteById(@PathParam("id") int id){
-        this.daoProduit.deleteById(id);
+        Produit produit = this.daoProduit.findById(id);
+        produit.setNom(null);
+        produit.setCode(null);
+        produit.setPrix(null);
+        this.daoProduit.persist(produit);
         return id;
     }
 
