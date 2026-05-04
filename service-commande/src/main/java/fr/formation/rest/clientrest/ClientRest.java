@@ -1,4 +1,10 @@
-package fr.formation.servicecommande.rest.clientrest;
+package fr.formation.rest.clientrest;
+
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 
 @Path("/client")
 @RegisterRestClient(configKey = "client-service")

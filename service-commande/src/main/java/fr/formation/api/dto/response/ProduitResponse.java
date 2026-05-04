@@ -1,4 +1,4 @@
-package main.java.fr.formation.api.dto.response;
+package fr.formation.api.dto.response;
 
 import java.math.BigDecimal;
 

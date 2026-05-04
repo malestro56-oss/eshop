@@ -1,6 +1,4 @@
-package fr.formation.servicecommande.api.dto.request;
-
-import fr.formation.servicecommande.model.Produit;
+package fr.formation.api.dto.request;
 
 import java.util.List;
 
