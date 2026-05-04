@@ -5,6 +5,6 @@ import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class CommandeRepository implements PanacheRepositoryBase<Commande, String> {
+public class CommandeRepository implements PanacheRepositoryBase<Commande, Integer> {
 
 }
