@@ -1,4 +1,4 @@
-package fr.formation.servicecommande.model;
+package fr.formation.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

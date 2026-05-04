@@ -1,4 +1,4 @@
-package fr.formation.servicecommande.rest.produitrest;
+package fr.formation.rest.produitrest;
 
 public interface ProduitRest {
 

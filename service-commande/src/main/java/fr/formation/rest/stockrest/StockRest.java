@@ -1,4 +1,4 @@
-package fr.formation.servicecommande.rest.stockrest;
+package fr.formation.rest.stockrest;
 
 public interface StockRest {
 
