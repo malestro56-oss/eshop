@@ -6,8 +6,11 @@ import formation.sopra.DTO.ProduitResponse;
 import formation.sopra.model.Produit;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Response;
 
+import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Map;
 
 @Path("/api/produit")
 public class ProduitController {
@@ -20,24 +23,46 @@ public class ProduitController {
 
     @Transactional
     @POST
-    public ProduitResponse createProduit(ProduitRequest request){
+    public Response createProduit(ProduitRequest request){
         Produit produit = new Produit();
         produit.setCode(request.code());
         produit.setNom(request.nom());
         produit.setPrix(request.prix());
         this.daoProduit.persist(produit);
-        return ProduitResponse.convert(produit);
+        return Response
+                .status(Response.Status.CREATED)
+                .entity(Map.of(
+                        "id",produit.getId()
+                ))
+                .build();
+        //return ProduitResponse.convert(produit);
     }
 
     @GET
     @Path("/{id}")
-    public ProduitResponse getProduitById(@PathParam("id") int id){
-        return this.daoProduit.findByIdOptional(id).map(ProduitResponse::convert).orElseThrow(()->new RuntimeException("Produit not found"));
+    public Response getProduitById(@PathParam("id") int id){
+        //return this.daoProduit.findByIdOptional(id).map(ProduitResponse::convert).orElseThrow(()->new RuntimeException("Produit not found"));
+        ProduitResponse produit = this.daoProduit.findByIdOptional(id).map(ProduitResponse::convert).orElseThrow(()->new NotFoundException("Produit not found"));
+        return Response
+                .status(Response.Status.OK)
+                .entity(produit)
+                .build();
+    }
+
+    @Path("/prix-nom/{nom}")
+    @GET
+    public ProduitResponse getProduitByNom(@PathParam("nom") String nom){
+        return this.daoProduit.findByNom(nom).map(ProduitResponse::convert).orElse(null);
     }
 
     @GET
-    public List<ProduitResponse> getAllProduit(){
-        return this.daoProduit.findAll().stream().map(ProduitResponse::convert).toList();
+    public Response getAllProduit(){
+        //return this.daoProduit.findAll().stream().map(ProduitResponse::convert).toList();
+        List<ProduitResponse> produits = this.daoProduit.findAll().stream().map(ProduitResponse::convert).toList();
+        return Response
+                .status(Response.Status.OK)
+                .entity(produits)
+                .build();
     }
 
     @Transactional
