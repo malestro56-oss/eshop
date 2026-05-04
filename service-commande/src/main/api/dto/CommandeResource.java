@@ -1,9 +1,9 @@
 package fr.formation.servicecommande.api.dto;
 
 import fr.formation.servicecommande.repo.CommandeRepository;
-import fr.formation.servicecommande.rest.ClientRest;
-import fr.formation.servicecommande.rest.ProduitRest;
-import fr.formation.servicecommande.rest.StockRest;
+import fr.formation.servicecommande.rest.clientrest.ClientRest;
+import fr.formation.servicecommande.rest.produitrest.ProduitRest;
+import fr.formation.servicecommande.rest.stockrest.StockRest;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Path;
@@ -30,5 +30,24 @@ public class CommandeResource {
 
     @Inject
     private CommandeRepository repository;
+
+    @GET
+    public List<CommandeResponseDTO> recupererToutesLesCommandes() {
+        return repository.listAll().stream()
+                .map(commande -> {
+                    String nomClient = clientRest.getNomClient(commande.getClientId());
+
+                    double prixTotal = commande.getProduits().stream()
+                            .map(produit -> produit.prix().doubleValue())
+                            .reduce(0.0, Double::sum);
+
+                    return new CommandeResponseDTO(
+                            commande.getId(),
+                            nomClient,
+                            commande.getProduits(),
+                            prixTotal);
+                })
+                .collect(Collectors.toList());
+    }
 
 }

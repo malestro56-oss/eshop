@@ -1,6 +1,6 @@
 package fr.formation.servicecommande.repo;
 
-import fr.formation.servicecommentaire.model.Commentaire;
+import fr.formation.servicecommande.model.Commande;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import jakarta.enterprise.context.ApplicationScoped;
 

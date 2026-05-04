@@ -1,4 +1,4 @@
-package main.model;
+package fr.formation.servicecommande.model;
 
 import java.math.BigDecimal;
 
