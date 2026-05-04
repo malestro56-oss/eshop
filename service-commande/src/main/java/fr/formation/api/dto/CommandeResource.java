@@ -111,6 +111,7 @@ public class CommandeResource {
             .entity(commande)
             .build();
             //diminuer le stock en fonction de la commande
-}
+
+        }
     }
 }

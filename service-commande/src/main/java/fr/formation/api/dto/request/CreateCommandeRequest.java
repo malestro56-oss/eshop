@@ -4,6 +4,6 @@ import fr.formation.servicecommande.model.Produit;
 
 import java.util.List;
 
-public record CreateCommandeRequest (Integer clientId, List<Produit> produits, double total) {
+public record CreateCommandeRequest (Integer clientId, List<ProduitRequest> produits) {
     
 }
